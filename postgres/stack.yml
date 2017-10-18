@@ -3,18 +3,27 @@ version: '3.1'
 
 services:
  db:
-  image: postgres:9.6
+  image: rolfkristensen/postgres-milage:1.0
   restart: always
   environment:
    POSTGRES_PASSWORD: test
   volumes:
-    - pgdata:/var/lib/postgresql/data
+   - pgdata:/var/lib/postgresql/data
+  ports:
+   - 9543:5432
+  networks:
+   db:
 
  adminer:
   image: adminer
   restart: always
   ports:
-   - 8080:8080
+   - 9000:8080
+  networks:
+   db:
 
 volumes:
  pgdata: 
+
+networks:
+ db:
