@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+ milagerest:
+  image: rolfkristensen/milage-rest:latest
+  secrets:
+   - dbmilage.properties
+  environment:
+    APP_DB_PROPERTY_FILE_PATH: /run/secrets/dbmilage.properties
+  networks:
+   - postgres_db
+  ports:
+   - 9001:8080
+  deploy:
+   replicas: 2
+
+secrets:
+ dbmilage.properties:
+  external: true
+
+networks:
+ postgres_db:
+  external: true
+  
