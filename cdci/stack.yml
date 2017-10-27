@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+ nexus:
+  image: sonatype/nexus3
+  networks:
+   - default
+  ports:
+   - 9101:8081
+  deploy:
+   replicas: 1
+  restart: always
+  volumes:
+   - nexus-data:/nexus-data
+ jenkins:
+  image: rolfkristensen/jenkins:lts
+  networks:
+   - default
+  ports:
+   - 9102:8080
+   - 50000:50000
+  restart: always
+  volumes:
+   - jenkins:/var/jenkins_home
+   - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+ default:
+  driver: overlay
+  
+volumes:
+ nexus-data:
+  external: true
+ jenkins:
+  external: true
+
