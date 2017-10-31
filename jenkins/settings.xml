@@ -7,7 +7,12 @@
     <server>
       <id>nexus</id>
       <username>deploy</username>
-      <password>artifacts</password>
+      <password>TODO:CHANGE_ME</password>
+    </server>
+    <server>
+      <id>docker.io</id>
+      <username>TODO:CHANGE_ME</username>
+      <password>TODO:CHANGE_ME</password>
     </server>
   </servers>
   
@@ -58,9 +63,11 @@
           <layout>default</layout>
           <releases>
             <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
           </releases>
           <snapshots>
             <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
           </snapshots>
         </repository>
       </repositories>
